@@ -1,14 +1,12 @@
-﻿using Commix.LocalDatabase;
-using Commix.LocalDatabase.LocalTestDatabaseDataSetTableAdapters;
+﻿using Commix.Databases;
+using Commix.Databases.LocalTestDatabaseDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using static Commix.LocalDatabase.LocalTestDatabaseDataSet;
+using System.Web.UI.MobileControls;
 
 namespace Commix.Services
 {
@@ -28,6 +26,39 @@ namespace Commix.Services
             adapter.Insert(id, userId, title, completed);
         }
 
+        public static void SaveReportByEntity() {
+            GeneralModel gm = new GeneralModel();
+            Report report = gm.Reports.Create();
+            report.stato = "prova";
+
+            report.data_download = DateTime.Now;
+            report.data_upload = DateTime.Now;
+            report.data_ultimo_salvataggio = DateTime.Now;
+            gm.Reports.Add(report);
+            gm.SaveChanges();
+            
+        }
+
+        public static void SaveReportWith(string content)
+        {
+            GeneralModel gm = new GeneralModel();
+            Report report = gm.Reports.Create();
+            report.Id = new Random().Next();
+            report.stato = "prova";
+            report.contenuto = Encoding.ASCII.GetBytes(content);
+            report.data_download = DateTime.Now;
+            report.data_upload = DateTime.Now;
+            report.data_ultimo_salvataggio = DateTime.Now;
+            gm.Reports.Add(report);
+            gm.SaveChanges();
+
+        }
+        
+        public static List<Report> ReadAllReports()
+        {
+            GeneralModel gm = new GeneralModel();
+            return gm.Reports.ToList();
+        }
 
     }
 }

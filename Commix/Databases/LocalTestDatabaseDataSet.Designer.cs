@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Commix.LocalDatabase {
+namespace Commix.Databases {
     
     
     /// <summary>
@@ -719,7 +719,7 @@ namespace Commix.LocalDatabase {
         }
     }
 }
-namespace Commix.LocalDatabase.LocalTestDatabaseDataSetTableAdapters {
+namespace Commix.Databases.LocalTestDatabaseDataSetTableAdapters {
     
     
     /// <summary>

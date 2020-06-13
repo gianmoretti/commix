@@ -64,6 +64,7 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,13 +76,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Macchina.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Macchina.Designer.cs">
+      <DependentUpon>Macchina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\LocalTestTable.cs" />
+    <Compile Include="Databases\GeneralModel.cs" />
+    <Compile Include="Databases\Report.cs" />
+    <Compile Include="Forms\Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Detail.Designer.cs">
+      <DependentUpon>Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Report.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Report.Designer.cs">
       <DependentUpon>Report.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalDatabase\LocalTestDatabaseDataSet.Designer.cs">
+    <Compile Include="Databases\LocalTestDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalTestDatabaseDataSet.xsd</DependentUpon>
@@ -91,6 +107,17 @@
     <Compile Include="Services\LocalRepository.cs" />
     <Compile Include="Services\WebService.cs" />
     <Compile Include="Models\TestModel.cs" />
+    <Compile Include="Databases\ServiformDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiformDataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Components\Macchina.resx">
+      <DependentUpon>Macchina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Detail.resx">
+      <DependentUpon>Detail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Report.resx">
       <DependentUpon>Report.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,18 +130,19 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="LocalDatabase\LocalTestDatabaseDataSet.xsc">
+    <None Include="Databases\LocalTestDatabaseDataSet.xsc">
       <DependentUpon>LocalTestDatabaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="LocalDatabase\LocalTestDatabaseDataSet.xsd">
+    <None Include="Databases\LocalTestDatabaseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>LocalTestDatabaseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="LocalDatabase\LocalTestDatabaseDataSet.xss">
+    <None Include="Databases\LocalTestDatabaseDataSet.xss">
       <DependentUpon>LocalTestDatabaseDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Commix.Databases.Report.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,17 +152,31 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Databases\ServiformDataSet.xsc">
+      <DependentUpon>ServiformDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Databases\ServiformDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ServiformDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Databases\ServiformDataSet.xss">
+      <DependentUpon>ServiformDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LocalDatabase\LocalTestDatabase.mdf">
+    <Content Include="Databases\LocalTestDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="LocalDatabase\LocalTestDatabase_log.ldf">
+    <Content Include="Databases\LocalTestDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>LocalTestDatabase.mdf</DependentUpon>
+    </Content>
+    <Content Include="Databases\Serviform.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -153,8 +195,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

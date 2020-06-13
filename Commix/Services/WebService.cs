@@ -23,8 +23,7 @@ namespace Commix.Services
             HttpResponseMessage response = await httpClient.GetAsync(apiUri);
 
             string json = await response.Content.ReadAsStringAsync();
-            TestModel testModel = JsonConvert.DeserializeObject<TestModel>(json);
-            return testModel.Title;
+            return json;
         }
 
     }
