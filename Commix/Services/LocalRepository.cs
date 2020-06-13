@@ -1,9 +1,12 @@
 ﻿using Commix.Databases;
 using Commix.Databases.LocalTestDatabaseDataSetTableAdapters;
+using Commix.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.UI.MobileControls;
@@ -60,5 +63,12 @@ namespace Commix.Services
             return gm.Reports.ToList();
         }
 
+        public static TestModel ReadContentById(int id)
+        {
+            GeneralModel gm = new GeneralModel();
+            Report selected = gm.Reports.Find(id);
+            string bytesAsString = Encoding.UTF8.GetString(selected.contenuto);
+            return JsonConvert.DeserializeObject<TestModel>(bytesAsString);
+        }
     }
 }
